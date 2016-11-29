@@ -1,0 +1,98 @@
+<div class="container">
+
+
+<h1>Market for {{market.commodity}}</h1>
+
+<h3>The Invisible Hand aspires to global domination.</h3>
+<p>Don't be fooled by the humble beginnings</p>
+<p>Place a bid or an offer. Markets are made one participant at a time.</p>
+
+	<button class="btn btn-lg btn-success" ng-click="addListing()">
+					Add a listing
+	</button>
+
+	<div class="row">
+		<div class="col-sm-6">
+			<h2>Bids</h2>
+				<div class="row">
+					<div class="col-xs-6 marketitem">
+						<h3>Description</h3>
+					</div>	
+					<div class="col-xs-3 marketitem">
+						<h3>Price</h3>
+					</div>	
+					<div class="col-xs-3 marketitem">
+						<h3>Quantity</h3>
+					</div>	
+				</div> 
+				<div class="row" ng-repeat="bid in bids | orderBy: sorterFunc: true">
+					<div class="col-xs-6 marketitem">
+						{{bid.description}}
+					</div>	
+					<div class="col-xs-3 marketitem">
+						{{bid.price}}
+					</div>	
+					<div class="col-xs-3 marketitem">
+						{{bid.size}}
+					</div>	
+				</div> 
+
+		</div>
+		<div class="col-sm-6">
+			<h2>Offers</h2>
+			<div class="row">
+				<div class="col-xs-6 marketitem">
+					<h3>Description</h3>
+				</div>	
+				<div class="col-xs-3 marketitem">
+					<h3>Price</h3>
+				</div>	
+				<div class="col-xs-3 marketitem">
+					<h3>Quantity</h3>
+				</div>	
+			</div> 
+			<div class="row" ng-repeat="offer in offers | orderBy: sorterFunc">
+				<div class="col-xs-6 marketitem">
+					{{offer.description}}
+				</div>	
+				<div class="col-xs-3 marketitem">
+					{{offer.price | number}}
+				</div>	
+				<div class="col-xs-3 marketitem">
+					{{offer.size}}
+				</div>	
+			</div> 
+		</div>
+	</div>
+
+
+<div id="addListingModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add a listing</h4>
+      </div>
+      <div class="modal-body">
+      		<div class="form-group">  
+        		<select class="form-control mb-10" ng-model="newListing.type">
+        		<option value="">select buy or sell</option>
+        		<option value="buy">buy</option>
+        		<option value="sell">sell</option>
+        		</select>
+        	</div>
+		<input type="text" class="form-control mb-10" ng-model="newListing.price" placeholder="price">
+		<input type="text" class="form-control mb-10" ng-model="newListing.size" placeholder="quantity in lbs">
+		<input type="text" class="form-control mb-10" ng-model="newListing.description" placeholder="description">
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-lg btn-block btn-success" data-dismiss="modal" ng-click="addNewListing(newListing)">
+			Add a Listing!
+		</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+
+
