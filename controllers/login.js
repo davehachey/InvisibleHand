@@ -1,4 +1,4 @@
-angular.module('livecode').controller('LoginController', function($scope, Auth, AuthWaitForLogged) {
+angular.module('livecode').controller('LoginController', function($scope, Auth, $location, AuthWaitForLogged) {
 
 	if (AuthWaitForLogged == null) {
 
@@ -7,7 +7,7 @@ angular.module('livecode').controller('LoginController', function($scope, Auth, 
 		console.log(AuthWaitForLogged)
 	}
 	else {
-
+		$location.path('/').replace();
 		// somebody is logged in
 		$scope.isLoggedIn = true;
 		$scope.currentUser = Auth.checkUser(AuthWaitForLogged);
@@ -22,6 +22,7 @@ angular.module('livecode').controller('LoginController', function($scope, Auth, 
 		Auth.loginWithFacebook().then(function(firebaseUser) {
 			$scope.currentUser = Auth.checkUser(firebaseUser.user);
 			$scope.isLoggedIn = true;
+			$location.path('/').replace();
 			// console.log("Signed in as:", firebaseUser.user.displayName);
 			// console.log(firebaseUser);
 		}).catch(function(error) {
@@ -37,6 +38,7 @@ angular.module('livecode').controller('LoginController', function($scope, Auth, 
 			$scope.isLoggedIn = true;
 			// console.log("Signed in as:", firebaseUser.user.displayName);
 			// console.log(firebaseUser);
+			$location.path('/').replace();
 		}).catch(function(error) {
 			console.log("Authentication failed:", error);
 		});

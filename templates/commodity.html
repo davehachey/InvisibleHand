@@ -11,18 +11,24 @@
 					Add a listing
 	</button>
 
+	<a href="#new-page.html"><button class="btn btn-lg btn-warning">
+					Back to List of Markets
+	</button></a>
+
+	<button class="btn btn-lg btn-danger" ng-click="logout()">Logout</button>
+
 	<div class="row">
 		<div class="col-sm-6">
 			<h2>Bids</h2>
 				<div class="row">
 					<div class="col-xs-6 marketitem">
-						<h3>Description</h3>
+						<h4>Description</h4>
 					</div>	
 					<div class="col-xs-3 marketitem">
-						<h3>Price</h3>
+						<h4>Price/lb</h4>
 					</div>	
 					<div class="col-xs-3 marketitem">
-						<h3>Quantity</h3>
+						<h4>Quantity in lbs</h4>
 					</div>	
 				</div> 
 				<div class="row" ng-repeat="bid in bids | orderBy: sorterFunc: true">
@@ -42,13 +48,13 @@
 			<h2>Offers</h2>
 			<div class="row">
 				<div class="col-xs-6 marketitem">
-					<h3>Description</h3>
+					<h4>Description</h4>
 				</div>	
 				<div class="col-xs-3 marketitem">
-					<h3>Price</h3>
+					<h4>Price/lb</h4>
 				</div>	
 				<div class="col-xs-3 marketitem">
-					<h3>Quantity</h3>
+					<h4>Quantity in lbs</h4>
 				</div>	
 			</div> 
 			<div class="row" ng-repeat="offer in offers | orderBy: sorterFunc">
@@ -81,7 +87,7 @@
         		<option value="sell">sell</option>
         		</select>
         	</div>
-		<input type="text" class="form-control mb-10" ng-model="newListing.price" placeholder="price">
+		<input type="text" class="form-control mb-10" ng-model="newListing.price" placeholder="price per lb">
 		<input type="text" class="form-control mb-10" ng-model="newListing.size" placeholder="quantity in lbs">
 		<input type="text" class="form-control mb-10" ng-model="newListing.description" placeholder="description">
       </div>

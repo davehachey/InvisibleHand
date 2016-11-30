@@ -1,6 +1,6 @@
 
 
-angular.module('livecode').controller('MarketController', function($scope, $routeParams, Market, Auth, AuthWaitForLogged) {
+angular.module('livecode').controller('MarketController', function($scope, $routeParams, Market, Auth, $location, AuthWaitForLogged) {
 	if (AuthWaitForLogged == null) {
 		// nobody is logged in
 		$scope.isLoggedIn = false;
@@ -41,6 +41,12 @@ angular.module('livecode').controller('MarketController', function($scope, $rout
    	return parseInt(item.price);
 };
 
+$scope.logout = function() {
+		Auth.logout().then(function() {
+			$scope.isLoggedIn = false;
+			$location.path("/login").replace();
+		});
+	};
 
 });
 

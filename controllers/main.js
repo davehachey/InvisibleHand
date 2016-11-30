@@ -1,5 +1,5 @@
-angular.module('livecode').controller('MainController', function($scope, Auth, AuthWaitForLogged, Market) {
-	
+angular.module('livecode').controller('MainController', function($scope, Auth, $location, AuthWaitForLogged, Market) {
+
 	if (AuthWaitForLogged == null) {
 
 		// nobody is logged in
@@ -39,9 +39,18 @@ angular.module('livecode').controller('MainController', function($scope, Auth, A
 	// 	$("#updateModal").modal('show');
 	// };
 
+
 	$scope.updateTheMarket = function(theMarket) {
 		Market.saveMarket(theMarket).then(function() {
 			alert("All good!");
+		});
+	};
+
+	$scope.logout = function() {
+
+		Auth.logout().then(function() {
+			$scope.isLoggedIn = false;
+			$location.path("/login").replace();
 		});
 	};
 });

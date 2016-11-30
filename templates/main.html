@@ -1,24 +1,31 @@
-	<h1>Welcome to the The Invisible Hand!</h1>
-	<h2>A place to buy and sell goods.</h2>
-	<div ng-hide="isLoggedIn">
+<!-- <div class="bodymain">
+</div> -->
+
+<div ng-hide="isLoggedIn">
 	<a href="#/login">Please Login</a>
-	</div>
+</div>
 
 <div ng-show="isLoggedIn">
-
 	<div class="container">
-		<div class="row">
-			<div class="col-sm-4 col-sm-offset-4">
-				<input type="text" class="form-control" ng-model="newMarket.name" placeholder="Market">
+		
+		<h3>{{welcomeMessage}}</h3>
+		<button class="btn btn-lg btn-danger" ng-click="logout()">Logout</button>
+		<h1>Welcome to the The Invisible Hand!</h1>
+		<h2>A place to buy and sell goods.</h2>
+		<p></p>
 
+		<div class="row">
+			<div class="col-sm-4">
+				<input type="text" class="form-control" ng-model="newMarket.name" placeholder="Market">
 				<p></p>
-				<button class="btn btn-lg btn-block btn-success" ng-click="addMarket()">
+				<button class="btn btn-lg btn-success" ng-click="addMarket()">
 					Add Market!
 				</button>
+				<p></p>
+				
 			</div>
-
 			<div class="col-sm-12">
-				<p>Markets:</p>
+				<h2>Markets:</h2>
 				<p ng-repeat="market in marketList">
 					<strong>{{market.commodity}}</strong> *{{market.numberofbids}}*{{market.numberofoffers}}*{{market.numberoftransactions}} <a href="#/commodity/{{market.$id}}" class="btn btn-info" ng-click="showUpdateMarket(market.$id)">View Detail or Place bid/offer</a>
 				</p>
