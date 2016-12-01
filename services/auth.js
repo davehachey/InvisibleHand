@@ -36,15 +36,24 @@ angular.module('livecode').factory('Auth', function($firebaseAuth, $firebaseObje
 		checkUser: function(user) {
 			var ref = firebase.database().ref().child('profiles').child(user.uid);
 			var theUser = $firebaseObject(ref);
-			theUser.display_name = user.displayName;
-			theUser.email = user.email;
-			theUser.$save();
-
+			theUser.$loaded().then(function(){
+				theUser.display_name = user.displayName;
+				theUser.email = user.email;
+				theUser.$save();
+			});
+			
 			return theUser;
 		},
 
 		logout: function() {
 			return auth.$signOut();
+		},
+			getProfile: function(profile_id) {
+			var ref = firebase.database().ref().child('profiles').child(profile_id);
+			return $firebaseObject(ref);
+		},
+			saveProfile: function(profile) {
+			return profile.$save();
 		},
 	};
 

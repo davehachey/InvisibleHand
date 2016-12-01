@@ -7,6 +7,14 @@
 	overflow:hidden
 }
 
+.incoming {
+	color:green;
+}
+
+.outgoing {
+	color:red;
+}
+
 /*.bodymain {
 	background-image: url("ih5.jpg");
 	background-size: cover;	

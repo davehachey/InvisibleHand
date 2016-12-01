@@ -26,6 +26,16 @@ angular.module('livecode').config(function($routeProvider) {
 		}
 	})
 
+		.when('/user', {
+		templateUrl: 'templates/user.html',
+		controller: 'UserController',
+		resolve: {
+	  		AuthWaitForLogged: function(Auth) {
+	  			return Auth.getAuth().$waitForSignIn();
+	  		}
+		}
+		})
+
 	.when('/commodity/:commodity_id', {
 		templateUrl: 'templates/commodity.html',
 		controller: 'MarketController',

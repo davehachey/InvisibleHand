@@ -27,10 +27,10 @@ angular.module('livecode').controller('MarketController', function($scope, $rout
 		console.log ("add new listing triggered");
 		newListing.userid=AuthWaitForLogged.uid;
 		if (newListing.type=="buy") {
-			Market.addBid(newListing, $routeParams.commodity_id);
+			Market.addBid(newListing, $routeParams.commodity_id, $scope.market);
 		}
 		else if (newListing.type=="sell") {
-		Market.addOffer(newListing, $routeParams.commodity_id);
+		Market.addOffer(newListing, $routeParams.commodity_id, $scope.market);
 		}
 		else {
 			alert("please enter whether you're buying or selling")
@@ -41,12 +41,34 @@ angular.module('livecode').controller('MarketController', function($scope, $rout
    	return parseInt(item.price);
 };
 
-$scope.logout = function() {
+	$scope.logout = function() {
 		Auth.logout().then(function() {
 			$scope.isLoggedIn = false;
 			$location.path("/login").replace();
 		});
 	};
 
+		$scope.hitBid = function() {
+			Market.makeOutgoingBid($scope.myOffer, AuthWaitForLogged.uid).then(function(){
+				Market.makeIncomingBid($scope.myOffer, AuthWaitForLogged.displayName, AuthWaitForLogged.email);
+			});
+		};
+		$scope.showHitBid = function(bid_id) {
+		$scope.myOffer = Market.getBid($routeParams.commodity_id, bid_id);
+		$("#hitBidModal").modal('show');
+
+		}
+
+$scope.liftOffer = function() {
+			Market.makeOutgoingBid($scope.myBid, AuthWaitForLogged.uid).then(function(){
+				Market.makeIncomingBid($scope.myBid, AuthWaitForLogged.displayName, AuthWaitForLogged.email);
+			});
+		};
+		$scope.showLiftOffer = function(offer_id) {
+		$scope.myBid = Market.getOffer($routeParams.commodity_id, offer_id);
+		$("#liftOfferModal").modal('show');
+
+		}
 });
+
 
