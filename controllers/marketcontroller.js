@@ -59,7 +59,7 @@ angular.module('livecode').controller('MarketController', function($scope, $rout
 
 		}
 
-$scope.liftOffer = function() {
+		$scope.liftOffer = function() {
 			Market.makeOutgoingBid($scope.myBid, AuthWaitForLogged.uid).then(function(){
 				Market.makeIncomingBid($scope.myBid, AuthWaitForLogged.displayName, AuthWaitForLogged.email);
 			});
