@@ -109,6 +109,8 @@ angular.module('livecode').factory('Market', function($firebaseArray, $firebaseO
 			return offers.$add(offerInfo);
 		},	
 
+//
+
 	makeIncomingBid: function(newBid, name, email) {
 		console.log("triggered");
 			var individualProfileOffersRef = profileOffersRef.child(newBid.userid);

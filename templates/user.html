@@ -27,34 +27,35 @@
 			<div class="col-xs-1 marketitem">
 				<h4>Qty</h4>
 			</div>
-			<div class="col-xs-6 marketitem">
+			<div class="col-xs-6 marketitem hidden-xs">
 				<h4>Description</h4>
 			</div>
+		</div>
 		<div class="row" ng-repeat="bid in listings | orderBy: sorterFunc: true">
-			<div class="col-xs-1 marketitem">
+			<div class="col-sm-1 col-xs-2 marketitem">
 				<a class="btn smallbutton btn-sm btn-danger" ng-click="removeListing(bid.listing_id, bid.side, bid.commodity_id, bid.$id)"><i class="fa fa-times" aria-hidden="true"></i>
-</a>
+				</a>
 			</div>
-			<div class="col-xs-2 marketitem">
+			<div class="col-sm-2 col-xs-4 marketitem">
 				{{bid.commodity}}
 			</div>
-			<div class="col-xs-1 marketitem">
+			<div class="col-sm-1 col-xs-2 marketitem">
 				{{bid.side}}
 			</div>
-			<div class="col-xs-1 marketitem">
+			<div class="col-sm-1 col-xs-2 marketitem">
 				${{bid.price}}/lb
 			</div>	
-			<div class="col-xs-1 marketitem">
+			<div class="col-sm-1 col-xs-2 marketitem">
 				{{bid.size}}lbs
 			</div>	
-			<div class="col-xs-6 marketitem">
+			<div class="col-sm-6 marketitem col-xs-12">
 				{{bid.description}}
 			</div>	
-		</div> 
+		</div>
 	</div>
 </div>
 	
-	<div class="row">
+<div class="row">
 	<div class="col-sm-12 listingbox">
 		<h2>Messages</h2>
 	<div class="row">
@@ -78,7 +79,7 @@
 				<h4>Description</h4>
 			</div>		
 		</div> 	
-		<div class="row {{message.type}}" ng-repeat="message in messages | orderBy: sorterFunc: true">
+		<div class="row" ng-repeat="message in messages | orderBy: sorterFunc: true">
 			<div class="col-xs-1 marketitem" ng-show="message.type=='incoming'">
 				<a class="btn smallbutton btn-sm btn-success" href="mailto:{{message.email}}"><i class="fa fa-envelope" aria-hidden="true"></i>
 </a>
@@ -133,7 +134,7 @@
 				<h5>Product as described</h5>
 			</div>				
 		</div> 
-		<div class="row {{message.type}}" ng-repeat="review in currentUser.reviews | orderBy: sorterFunc: true">
+		<div class="row" ng-repeat="review in currentUser.reviews | orderBy: sorterFunc: true">
 			<div class="col-xs-2 marketitem">
 				{{review.commodity}}
 			</div>
