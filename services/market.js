@@ -41,6 +41,7 @@ angular.module('livecode').factory('Market', function($firebaseArray, $firebaseO
 				var individualProfileMarketRef = profileListingRef.child(newListing.userid);
 				var profileListings= $firebaseArray(individualProfileMarketRef);
 				var profileListingInfo= {
+					commodity_id:market.$id,
 					commodity:market.commodity,
 					side:"bid",
 					size:newListing.size,
@@ -60,6 +61,7 @@ angular.module('livecode').factory('Market', function($firebaseArray, $firebaseO
 				var individualProfileMarketRef = profileListingRef.child(newListing.userid);
 				var profileListings= $firebaseArray(individualProfileMarketRef);
 				var profileListingInfo= {
+					commodity_id:market.$id,
 					commodity:market.commodity,
 					side:"offer",
 					size:newListing.size,
@@ -203,7 +205,30 @@ angular.module('livecode').factory('Market', function($firebaseArray, $firebaseO
 			return $firebaseArray(individualListingsRef);
 		},
 
+		removeListing: function(listing_id, user_id, type, commodity_id, profilelisting_id) {
+			console.log(listing_id);
+			if (type=="offer"){
+				console.log("sell");
+				var individualListingsRef = marketListingSellRef.child(commodity_id).child(listing_id);
+			}
+			else {
+				var individualListingsRef = marketListingBuyRef.child(commodity_id).child(listing_id);
+				console.log("buy");
+			}
+			var deleteListing = $firebaseObject(individualListingsRef);
+			deleteListing.$remove().then(function(){
+				console.log(user_id);
+				console.log(listing_id);
+				var profileListingsRef = profileListingRef.child(user_id).child(profilelisting_id);
+				var theListing = $firebaseObject(profileListingsRef);
+				return theListing.$remove();	
+			});
+		
+		},
+
+	
 	};
+
 
 
 

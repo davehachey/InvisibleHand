@@ -24,18 +24,21 @@ angular.module('livecode').controller('UserController', function($scope, $routeP
 		var profile=Auth.getProfile($scope.myReview.userid);
 		profile.$loaded().then(function(ref){
 			if (!Array.isArray(profile.reviews)){
-			profile.reviews=[];
-		}
-		profile.reviews.push($scope.myReview);
-		Auth.saveProfile(profile).then(function(
-		){
-			$("#writeReviewModal").modal('hide');
-		}
+				profile.reviews=[];
+			}
 
-		);
+			profile.reviews.push($scope.myReview);
+			Auth.saveProfile(profile).then(function(){
+				$("#writeReviewModal").modal('hide');
+			});
 		})
-		}
-		});
+	}
+	$scope.removeListing = function (listing_id, type, commodity_id, profilelisting_id){
+		Market.removeListing(listing_id, AuthWaitForLogged.uid, type, commodity_id, profilelisting_id);
+	}
+});
+
+		
 
 
 

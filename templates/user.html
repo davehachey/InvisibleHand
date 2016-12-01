@@ -1,6 +1,6 @@
 
 <div class="container">
-<p>hi {{currentUser.display_name}}</p>
+<h3>You are logged in as: {{currentUser.display_name}}</h3>
 
 
 <a href="#/"><button class="btn btn-lg btn-warning">
@@ -11,36 +11,43 @@
 	<div class="col-sm-12 listingbox">
 		<h2>Listing</h2>
 		<div class="row">
+			<div class="col-xs-1 marketitem">
+				<h4></h4>
+			</div>	
 			<div class="col-xs-2 marketitem">
 				<h4>Commodity</h4>
 			</div>	
-			<div class="col-xs-2 marketitem">
+			<div class="col-xs-1 marketitem">
 				<h4>Side</h4>
 			</div>	
-			<div class="col-xs-2 marketitem">
-				<h4>Price/lb</h4>
+			
+			<div class="col-xs-1 marketitem">
+				<h4>Price</h4>
 			</div>	
-			<div class="col-xs-2 marketitem">
-				<h4>Quantity in lbs</h4>
+			<div class="col-xs-1 marketitem">
+				<h4>Qty</h4>
 			</div>
-			<div class="col-xs-4 marketitem">
+			<div class="col-xs-6 marketitem">
 				<h4>Description</h4>
-			</div>		
-		</div> 
+			</div>
 		<div class="row" ng-repeat="bid in listings | orderBy: sorterFunc: true">
+			<div class="col-xs-1 marketitem">
+				<a class="btn smallbutton btn-sm btn-danger" ng-click="removeListing(bid.listing_id, bid.side, bid.commodity_id, bid.$id)"><i class="fa fa-times" aria-hidden="true"></i>
+</a>
+			</div>
 			<div class="col-xs-2 marketitem">
 				{{bid.commodity}}
 			</div>
-			<div class="col-xs-2 marketitem">
+			<div class="col-xs-1 marketitem">
 				{{bid.side}}
 			</div>
-			<div class="col-xs-2 marketitem">
-				{{bid.price}}
+			<div class="col-xs-1 marketitem">
+				${{bid.price}}/lb
 			</div>	
-			<div class="col-xs-2 marketitem">
-				{{bid.size}}
+			<div class="col-xs-1 marketitem">
+				{{bid.size}}lbs
 			</div>	
-			<div class="col-xs-4 marketitem">
+			<div class="col-xs-6 marketitem">
 				{{bid.description}}
 			</div>	
 		</div> 
@@ -50,45 +57,53 @@
 	<div class="row">
 	<div class="col-sm-12 listingbox">
 		<h2>Messages</h2>
-		<div class="row">
+	<div class="row">
+			<div class="col-xs-1 marketitem">
+				<h4></h4>
+			</div>	
 			<div class="col-xs-2 marketitem">
 				<h4>Commodity</h4>
 			</div>	
-			<div class="col-xs-2 marketitem">
+			<div class="col-xs-1 marketitem">
 				<h4>Side</h4>
 			</div>	
-			<div class="col-xs-2 marketitem">
+			
+			<div class="col-xs-1 marketitem">
+				<h4>Price</h4>
+			</div>	
+			<div class="col-xs-1 marketitem">
+				<h4>Qty</h4>
+			</div>
+			<div class="col-xs-5 marketitem">
 				<h4>Description</h4>
-			</div>	
-			<div class="col-xs-2 marketitem">
-				<h4>Price/lb</h4>
-			</div>	
-			<div class="col-xs-2 marketitem">
-				<h4>Quantity in lbs</h4>
-			</div>	
-		</div> 
+			</div>		
+		</div> 	
 		<div class="row {{message.type}}" ng-repeat="message in messages | orderBy: sorterFunc: true">
+			<div class="col-xs-1 marketitem" ng-show="message.type=='incoming'">
+				<a class="btn smallbutton btn-sm btn-success" href="mailto:{{message.email}}"><i class="fa fa-envelope" aria-hidden="true"></i>
+</a>
+			</div>	
+			<div class="col-xs-1 marketitem" ng-show="message.type=='outgoing'">
+				<a class="btn smallbutton btn-sm btn-warning" ng-click="writeReview(message.userid, message.$id)"><i class="fa fa-commenting" aria-hidden="true"></i>
+</a>
+			</div>	
 			<div class="col-xs-2 marketitem">
 				{{message.commodity}}
 			</div>
-			<div class="col-xs-2 marketitem">
+			<div class="col-xs-1 marketitem">
 				{{message.side}}
 			</div>
-			<div class="col-xs-2 marketitem">
+			
+			<div class="col-xs-1 marketitem">
+				${{message.price}}/lb
+			</div>	
+			<div class="col-xs-1 marketitem">
+				{{message.size}}lbs
+			</div>	
+			<div class="col-xs-5 marketitem">
 				{{message.description}}
 			</div>	
-			<div class="col-xs-2 marketitem">
-				{{message.price}}
-			</div>	
-			<div class="col-xs-2 marketitem">
-				{{message.size}}
-			</div>	
-			<div class="col-xs-2 marketitem" ng-show="message.type=='incoming'">
-				<a class="btn btn-success" href="mailto:{{message.email}}">contact other side</a>
-			</div>	
-			<div class="col-xs-2 marketitem" ng-show="message.type=='outgoing'">
-				<a class="btn btn-warning" ng-click="writeReview(message.userid, message.$id)">review when done</a>
-			</div>	
+
 		</div> 
 	</div>
 </div>
