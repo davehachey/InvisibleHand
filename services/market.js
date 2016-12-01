@@ -117,6 +117,9 @@ angular.module('livecode').factory('Market', function($firebaseArray, $firebaseO
 			if (newBid.type=="buy"){
 				newBidside="offer";
 			}
+			if (newBid.message==undefined){
+				newBid.message="";
+			}
 			console.log(newBid);
 			var offerInfo= {
 				commodity:newBid.commodity,
@@ -126,7 +129,7 @@ angular.module('livecode').factory('Market', function($firebaseArray, $firebaseO
 				side:newBidside,
 				size:newBid.size,
 				price:newBid.price,
-				description:newBid.description,
+				description:newBid.message,
 			};
 			console.log(offerInfo);
 			return offers.$add(offerInfo);
@@ -140,6 +143,9 @@ angular.module('livecode').factory('Market', function($firebaseArray, $firebaseO
 				newOfferside="bid";
 
 			}
+			if (newOffer.message==undefined){
+				newOffer.message="";
+			}
 			console.log(newOffer.side)
 			console.log(newOffer)
 			var bidInfo= {
@@ -148,7 +154,7 @@ angular.module('livecode').factory('Market', function($firebaseArray, $firebaseO
 				side:newOfferside,
 				size:newOffer.size,
 				price:newOffer.price,
-				description:newOffer.description,
+				description:newOffer.message,
 				userid:newOffer.userid,
 			};
 			return bids.$add(bidInfo);
