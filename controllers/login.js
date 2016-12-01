@@ -30,10 +30,10 @@ angular.module('livecode').controller('LoginController', function($scope, Auth, 
 		});
 	};
 
-	$scope.loginWithTwitter = function() {
+	$scope.loginWithGoogle = function() {
 		
 		// login with Twitter
-		Auth.loginWithTwitter().then(function(firebaseUser) {
+		Auth.loginWithGoogle().then(function(firebaseUser) {
 			$scope.currentUser = Auth.checkUser(firebaseUser.user);
 			$scope.isLoggedIn = true;
 			// console.log("Signed in as:", firebaseUser.user.displayName);

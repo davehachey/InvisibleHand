@@ -15,6 +15,19 @@
 	color:red;
 }
 
+.listingbox {
+
+    background: lightgrey;
+    border-radius: 1rem;
+    padding-bottom: 1.2rem;
+    margin: 1rem 0;
+}
+
+/*.tinyfont {
+	font-size:12px;
+}*/
+
+
 /*.bodymain {
 	background-image: url("ih5.jpg");
 	background-size: cover;	

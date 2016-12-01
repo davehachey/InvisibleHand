@@ -183,7 +183,7 @@ angular.module('livecode').factory('Market', function($firebaseArray, $firebaseO
 		},
 
 		getOffer: function(user_id, offer_id) {
-			var individualMarketRef = profileOffersRef.child(user_id).child(offer_id);
+			var individualMarketRef = marketListingSellRef.child(user_id).child(offer_id);
 			return $firebaseObject(individualMarketRef);
 		},
 

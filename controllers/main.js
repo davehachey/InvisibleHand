@@ -6,6 +6,7 @@ angular.module('livecode').controller('MainController', function($scope, Auth, $
 		$scope.isLoggedIn = false;
 	}
 	else {
+		console.log(AuthWaitForLogged);
 
 		// somebody is logged in
 		$scope.isLoggedIn = true;
@@ -47,7 +48,6 @@ angular.module('livecode').controller('MainController', function($scope, Auth, $
 	};
 
 	$scope.logout = function() {
-
 		Auth.logout().then(function() {
 			$scope.isLoggedIn = false;
 			$location.path("/login").replace();

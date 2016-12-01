@@ -23,22 +23,22 @@
 
 	<div class="row">
 		<div class="col-sm-6">
-			<h2>Bids</h2>
+			<h3>Bids</h3>
 				<div class="row">
 				
 					<div class="col-xs-5 marketitem col-xs-offset-2">
-						<h4>Description</h4>
+						<h5>Description</h5>
 					</div>	
 					<div class="col-xs-3 marketitem">
-						<h4>Price/lb</h4>
+						<h5>Price/lb</h5>
 					</div>	
 					<div class="col-xs-2 marketitem">
-						<h4>Quantity in lbs</h4>
+						<h5>Quantity in lbs</h5>
 					</div>	
 				</div> 
 				<div class="row" ng-repeat="bid in bids | orderBy: sorterFunc: true">
-					<div class="col-sm-2">
-						<button class="btn-xs btn btn-block" ng-click="showHitBid(bid.$id)">hit bid</button>
+					<div class="col-sm-2" >
+						<button class="btn-xs btn btn-block" ng-show="currentUser.$id != bid.userid" ng-click="showHitBid(bid.$id)">hit bid</button>
 					</div>
 					<div class="col-xs-5 marketitem">
 						{{bid.description}}
@@ -53,16 +53,16 @@
 
 		</div>
 		<div class="col-sm-6">
-			<h2>Offers</h2>
+			<h3>Offers</h3>
 			<div class="row">
 				<div class="col-xs-5 marketitem">
-					<h4>Description</h4>
+					<h5>Description</h5>
 				</div>	
 				<div class="col-xs-3 marketitem">
-					<h4>Price/lb</h4>
+					<h5>Price/lb</h5>
 				</div>	
 				<div class="col-xs-2 marketitem">
-					<h4>Quantity in lbs</h4>
+					<h5>Quantity in lbs</h5>
 				</div>	
 			
 			</div> 
@@ -77,7 +77,7 @@
 					{{offer.size}}
 				</div>	
 				<div class="col-xs-2">
-					<button class="btn-xs btn-block btn" ng-click="showLiftOffer(offer.$id)">lift offer</button>
+					<button class="btn-xs btn-block btn" ng-show="currentUser.$id != offer.userid" ng-click="showLiftOffer(offer.$id)">lift offer</button>
 				</div>
 			</div> 
 		</div>

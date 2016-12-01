@@ -20,8 +20,8 @@ angular.module('livecode').factory('Auth', function($firebaseAuth, $firebaseObje
 			return auth.$signInWithPopup("facebook");
 		},
 
-			loginWithTwitter: function() {
-			return auth.$signInWithPopup("twitter");
+			loginWithGoogle: function() {
+			return auth.$signInWithPopup("google");
 		},
 
 
